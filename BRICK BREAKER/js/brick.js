@@ -30,8 +30,12 @@ export default class Brick {
   }
 
   draw(ctx) {
-    ctx.fillStyle = this.type.color;
-    ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
+    if (this.image && this.image.complete) {
+      ctx.drawImage(this.image, this.position.x, this.position.y, this.width, this.height);
+    } else {
+      ctx.fillStyle = this.type.color;
+      ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
+    }
   }
 
   createPowerUp() {
