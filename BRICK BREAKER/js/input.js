@@ -14,7 +14,7 @@ export default class InputHandler {
           game.togglePause();
           break;
         case ' ':
-          // Start the game or launch the ball
+          // Start the game or release the ball
           break;
       }
     });
@@ -39,12 +39,12 @@ export default class InputHandler {
     document.addEventListener('touchmove', (event) => {
       let deltaX = event.touches[0].clientX - touchX;
       touchX = event.touches[0].clientX;
-      paddle.x += deltaX;
+      paddle.position.x += deltaX;
 
       // Boundary checks
-      if (paddle.x < 0) paddle.x = 0;
-      if (paddle.x + paddle.width > game.gameWidth)
-        paddle.x = game.gameWidth - paddle.width;
+      if (paddle.position.x < 0) paddle.position.x = 0;
+      if (paddle.position.x + paddle.width > game.gameWidth)
+        paddle.position.x = game.gameWidth - paddle.width;
     });
   }
 }
