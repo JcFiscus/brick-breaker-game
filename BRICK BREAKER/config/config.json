@@ -1,0 +1,6 @@
+{
+  "ballSpeed": 5,
+  "paddleWidth": 100,
+  "lives": 3,
+  "powerUpChance": 0.3
+}

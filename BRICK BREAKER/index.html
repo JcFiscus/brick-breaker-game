@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Brick Breaker Game</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <canvas id="gameCanvas"></canvas>
+  <div id="ui">
+    <div id="score">Score: 0</div>
+    <div id="lives">Lives: 3</div>
+    <div id="level">Level: 1</div>
+    <button id="pauseBtn">Pause</button>
+  </div>
+
+  <!-- Pause Menu -->
+  <div id="pauseMenu" class="overlay hidden">
+    <h2>Game Paused</h2>
+    <button id="resumeBtn">Resume</button>
+    <button id="restartBtn">Restart</button>
+    <button id="exitBtn">Exit</button>
+    <label>
+      Background Music:
+      <input type="checkbox" id="bgMusicToggle" checked>
+    </label>
+  </div>
+
+  <!-- Game Over Screen -->
+  <div id="gameOverScreen" class="overlay hidden">
+    <h2>Game Over</h2>
+    <p>Your Score: <span id="finalScore">0</span></p>
+    <p>High Score: <span id="highScore">0</span></p>
+    <button id="restartGameBtn">Restart</button>
+    <button id="quitGameBtn">Quit</button>
+  </div>
+
+  <script src="js/utils.js"></script>
+  <script src="js/paddle.js"></script>
+  <script src="js/ball.js"></script>
+  <script src="js/brick.js"></script>
+  <script src="js/powerUp.js"></script>
+  <script src="js/level.js"></script>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
