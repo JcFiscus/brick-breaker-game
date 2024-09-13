@@ -21,11 +21,21 @@ export default class Ball {
   }
 
   draw(ctx) {
-    ctx.fillStyle = '#FFDD00';
-    ctx.beginPath();
-    ctx.arc(this.position.x, this.position.y, this.radius, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.closePath();
+    if (this.image && this.image.complete) {
+      ctx.drawImage(
+        this.image,
+        this.position.x - this.radius,
+        this.position.y - this.radius,
+        this.radius * 2,
+        this.radius * 2
+      );
+    } else {
+      ctx.fillStyle = '#FFDD00';
+      ctx.beginPath();
+      ctx.arc(this.position.x, this.position.y, this.radius, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.closePath();
+    }
   }
 
   update(deltaTime) {
@@ -53,7 +63,7 @@ export default class Ball {
       this.velocity.y = -this.velocity.y;
 
       // Adjust angle based on where it hits the paddle
-      let collidePoint = this.position.x - (this.game.paddle.x + this.game.paddle.width / 2);
+      let collidePoint = this.position.x - (this.game.paddle.position.x + this.game.paddle.width / 2);
       collidePoint = collidePoint / (this.game.paddle.width / 2);
       let angle = (Math.PI / 3) * collidePoint; // Max 60 degrees
       this.velocity.x = this.speed * Math.sin(angle);
