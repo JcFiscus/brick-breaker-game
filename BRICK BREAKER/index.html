@@ -7,6 +7,8 @@
 </head>
 <body>
   <canvas id="gameCanvas"></canvas>
+  
+  <!-- UI Elements -->
   <div id="ui">
     <div id="score">Score: 0</div>
     <div id="lives">Lives: 3</div>
@@ -35,6 +37,11 @@
     <button id="quitGameBtn">Quit</button>
   </div>
 
-  <script type="module" src="./js/main.js"></script>
+  <!-- Hidden Images for Preloading -->
+  <img id="img_ball" src="assets/images/ball.png" style="display: none;">
+  <img id="img_brick" src="assets/images/brick.png" style="display: none;">
+
+  <!-- Main Script -->
+  <script type="module" src="js/main.js"></script>
 </body>
 </html>
