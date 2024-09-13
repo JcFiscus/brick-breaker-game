@@ -3,7 +3,7 @@
 export default class PowerUp {
   constructor(game, position, type) {
     this.game = game;
-    this.position = position;
+    this.position = { ...position };
     this.width = 20;
     this.height = 20;
     this.speed = 2;
@@ -11,15 +11,15 @@ export default class PowerUp {
     this.markedForDeletion = false;
   }
 
-  update() {
+  update(deltaTime) {
     this.position.y += this.speed;
 
     // Collision with paddle
     if (
-      this.position.x < this.game.paddle.x + this.game.paddle.width &&
-      this.position.x + this.width > this.game.paddle.x &&
-      this.position.y < this.game.paddle.y + this.game.paddle.height &&
-      this.position.y + this.height > this.game.paddle.y
+      this.position.x < this.game.paddle.position.x + this.game.paddle.width &&
+      this.position.x + this.width > this.game.paddle.position.x &&
+      this.position.y < this.game.paddle.position.y + this.game.paddle.height &&
+      this.position.y + this.height > this.game.paddle.position.y
     ) {
       this.activatePowerUp();
       this.markedForDeletion = true;
@@ -32,7 +32,7 @@ export default class PowerUp {
   }
 
   draw(ctx) {
-    ctx.fillStyle = this.type.color;
+    ctx.fillStyle = this.type.color || '#FFD700';
     ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
   }
 
