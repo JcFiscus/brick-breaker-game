@@ -92,63 +92,70 @@ class Game {
   }
 }
 
-let canvas = document.getElementById('gameCanvas');
-let ctx = canvas.getContext('2d');
+async function initGame() {
+  const response = await fetch('config/config.json');
+  const config = await response.json();
 
-let GAME_WIDTH = window.innerWidth;
-let GAME_HEIGHT = window.innerHeight;
+  let canvas = document.getElementById('gameCanvas');
+  let ctx = canvas.getContext('2d');
 
-canvas.width = GAME_WIDTH;
-canvas.height = GAME_HEIGHT;
+  let GAME_WIDTH = window.innerWidth;
+  let GAME_HEIGHT = window.innerHeight;
 
-import config from '../config/config.json' assert { type: 'json' };
+  canvas.width = GAME_WIDTH;
+  canvas.height = GAME_HEIGHT;
 
-let game = new Game(GAME_WIDTH, GAME_HEIGHT, config);
-game.start();
+  let game = new Game(GAME_WIDTH, GAME_HEIGHT, config);
+  game.start();
 
-let lastTime = 0;
+  let lastTime = 0;
 
-function gameLoop(timestamp) {
-  let deltaTime = timestamp - lastTime;
-  lastTime = timestamp;
+  function gameLoop(timestamp) {
+    let deltaTime = timestamp - lastTime;
+    lastTime = timestamp;
 
-  ctx.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+    ctx.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
 
-  game.update(deltaTime);
-  game.draw(ctx);
+    game.update(deltaTime);
+    game.draw(ctx);
+
+    requestAnimationFrame(gameLoop);
+  }
 
   requestAnimationFrame(gameLoop);
+
+  // UI Event Listeners
+  document.getElementById('pauseBtn').addEventListener('click', () => {
+    game.togglePause();
+  });
+
+  document.getElementById('resumeBtn').addEventListener('click', () => {
+    game.togglePause();
+  });
+
+  document.getElementById('restartBtn').addEventListener('click', () => {
+    location.reload();
+  });
+
+  document.getElementById('exitBtn').addEventListener('click', () => {
+    // Implement exit functionality
+  });
+
+  document.getElementById('restartGameBtn').addEventListener('click', () => {
+    location.reload();
+  });
+
+  document.getElementById('quitGameBtn').addEventListener('click', () => {
+    // Implement quit functionality
+  });
+
+  // Background Music Toggle
+  document.getElementById('bgMusicToggle').addEventListener('change', (e) => {
+    let bgMusic = document.getElementById('bgMusic');
+    if (bgMusic) {
+      bgMusic.muted = !e.target.checked;
+    }
+  });
 }
 
-requestAnimationFrame(gameLoop);
-
-// UI Event Listeners
-document.getElementById('pauseBtn').addEventListener('click', () => {
-  game.togglePause();
-});
-
-document.getElementById('resumeBtn').addEventListener('click', () => {
-  game.togglePause();
-});
-
-document.getElementById('restartBtn').addEventListener('click', () => {
-  location.reload();
-});
-
-document.getElementById('exitBtn').addEventListener('click', () => {
-  // Implement exit functionality
-});
-
-document.getElementById('restartGameBtn').addEventListener('click', () => {
-  location.reload();
-});
-
-document.getElementById('quitGameBtn').addEventListener('click', () => {
-  // Implement quit functionality
-});
-
-// Background Music Toggle
-document.getElementById('bgMusicToggle').addEventListener('change', (e) => {
-  let bgMusic = document.getElementById('bgMusic');
-  bgMusic.muted = !e.target.checked;
-});
+initGame();
