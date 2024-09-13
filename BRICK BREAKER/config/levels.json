@@ -1,6 +1,7 @@
 // levels.js
 
 export const level1 = [
+  // Row 1
   [
     { durability: 1, color: '#FF5733', score: 10 },
     { durability: 1, color: '#FF5733', score: 10 },
@@ -8,6 +9,7 @@ export const level1 = [
     { durability: 1, color: '#FF5733', score: 10 },
     { durability: 1, color: '#FF5733', score: 10 }
   ],
+  // Row 2
   [
     { durability: 2, color: '#33FF57', score: 20 },
     { durability: 2, color: '#33FF57', score: 20 },
@@ -18,6 +20,7 @@ export const level1 = [
 ];
 
 export const level2 = [
+  // Row 1
   [
     { durability: 1, color: '#3357FF', score: 10 },
     { durability: 2, color: '#33FF57', score: 20 },
@@ -25,6 +28,7 @@ export const level2 = [
     { durability: 2, color: '#33FF57', score: 20 },
     { durability: 1, color: '#3357FF', score: 10 }
   ],
+  // Row 2
   [
     { durability: 2, color: '#FF5733', score: 20 },
     { durability: 3, color: '#33FF57', score: 30 },
